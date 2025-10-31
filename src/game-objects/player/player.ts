@@ -40,6 +40,8 @@ export class Player extends CharacterGameObject {
             animationConfig,
             speed: PLAYER_SPEED,
             InputComponent: config.controls
+            isInvulnerable: false,
+            invulnerableAfterHitAnimationDuration: PLAYER_INVULNERABLE_AFTER_HIT_DURATION
         });
 
         // add state machine

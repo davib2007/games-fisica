@@ -9,6 +9,7 @@ import { MoveState } from '../../components/state-machine/states/character/move-
 import { SpeedComponent } from '../../components/game.object/speed-component';
 import { DirectionComponent } from '../../components/game.object/direction-component';
 import { AnimationComponent, AnimationConfig } from '../../components/game.object/animation-component';
+import { InvulnerableComponent } from '../../components/game.object/invulnerable-component';
 
 export type CharacterConfig = {
     scene: Phaser.Scene;
@@ -20,6 +21,8 @@ export type CharacterConfig = {
     speed: number;
     id?: string;
     isPlayer: boolean;
+    isInvulnerable?: boolean;
+    invulnerableAfterHitAnimationDuration?: number;
 };
 
 export abstract class CharacterGameObject extends Phaser.Physics.Arcade.Sprite {
@@ -27,11 +30,12 @@ export abstract class CharacterGameObject extends Phaser.Physics.Arcade.Sprite {
     protected _speedComponent: SpeedComponent;
     protected _directionComponent: DirectionComponent;
     protected _animationComponent: AnimationComponent;
+    protected _invulnerableComponent: InvulnerableComponent;
     protected _stateMachine: StateMachine;
     protected _isPlayer: boolean
 
     constructor(config: CharacterConfig) {
-        const { scene, position, assetKey, frame, id, animationConfig, InputComponent, speed, isPlayer } = config;
+        const { scene, position, assetKey, frame, id, animationConfig, InputComponent, speed, isPlayer, invulnerableAfterHitAnimationDuration, isInvulnerable } = config;
         const { x, y } = position;
         super(scene, x , y, assetKey, frame || 0);
 
@@ -44,6 +48,7 @@ export abstract class CharacterGameObject extends Phaser.Physics.Arcade.Sprite {
         this._speedComponent = new SpeedComponent(this, speed);
         this._directionComponent = new DirectionComponent(this);
         this._animationComponent = new AnimationComponent(this, animationConfig)
+        this._invulnerableComponent = new InvulnerableComponent(this, isInvulnerable, invulnerableAfterHitAnimationDuration)
 
         // add state machine
         this._stateMachine = new StateMachine(id);
