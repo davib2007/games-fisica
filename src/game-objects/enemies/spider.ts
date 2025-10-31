@@ -80,8 +80,10 @@ this._directionComponent.callback = (direction: Direction) => {
     }
 
     #changeDirection(): void {
+      // reset existing enemy input
       this.controls.reset();
 
+      // wait a small period of time and then choose a random direction to move
       this.scene.time.delayedCall(ENEMY_SPIDER_CHANGE_DIRECTION_DELAY_WAIT, () => {
         const randomDirection = Phaser.Math.Between(0, 3);
         if (randomDirection === 0) {
@@ -94,6 +96,7 @@ this._directionComponent.callback = (direction: Direction) => {
           this.controls.isLeftDown = true;
         }
 
+        // set up event for next direction change
         this.scene.time.addEvent({
           delay: Phaser.Math.Between(500, 1500),
           callback: this.#changeDirection,
