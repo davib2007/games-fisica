@@ -96,6 +96,12 @@
         "atlasURL": "spider.json"
       },
       {
+        "type": "spritesheet",
+        "key": "ZOMBIE",
+        "url": "Zombie.png",
+        "frameConfig": { "frameWidth": 32, "frameHeight": 32 }
+      },
+      {
         "type": "aseprite",
         "key": "WISP",
         "textureURL": "wisp.png",

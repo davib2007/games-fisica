@@ -9,6 +9,7 @@ export const ASSET_KEYS = {
   SPIDER: 'SPIDER',
   WISP: 'WISP',
   DROW: 'DROW',
+  ZOMBIE: 'ZOMBIE',
   DAGGER: 'DAGGER',
   DUNGEON_1_BACKGROUND: 'DUNGEON_1_BACKGROUND',
   DUNGEON_1_FOREGROUND: 'DUNGEON_1_FOREGROUND',
@@ -57,6 +58,13 @@ export const SPIDER_ANIMATION_KEYS = {
   WALK: 'spider_walk',
   HIT: 'spider_hit',
   DEATH: ASSET_KEYS.ENEMY_DEATH,
+} as const;
+
+export const ZOMBIE_ANIMATION_KEYS = {
+  WALK: 'zombie_walk',
+  IDLE: 'zombie_idle',
+  HIT: 'zombie_hit',
+  DEATH: 'zombie_death',
 } as const;
 
 export const DROW_ANIMATION_KEYS = {
